@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://ultraq.net.nz">
+<head th:replace="~{site/fragments/header :: head}"></head>
+<body>
+    
+    <!-- Substitui o antigo PHP include para inserir o header completo -->
+    <div th:insert="~{site/fragments/header}"></div>
+        
+    <div layout:fragment="content">
+        <!-- Conteúdo principal injetado pelas views -->
+    </div>
+
+    <!-- Substitui o antigo PHP include para inserir o footer completo -->
+    <div th:insert="~{site/fragments/footer}"></div>
+</body>
+</html>

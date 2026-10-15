@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle Administrativo - GWJ Barbearia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f1015;
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+        .navbar-custom {
+            background: rgba(30, 32, 44, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .dashboard-card {
+            background: rgba(30, 32, 44, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-4">
+        <div class="container-fluid">
+            <span class="navbar-brand fw-bold text-warning">GWJ Admin</span>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-secondary" th:if="${usuario != null}">
+                    Conectado como: <strong class="text-light" th:text="${usuario.nomeUsuario}">Admin</strong>
+                </span>
+                <a th:href="@{/MRYnZpAsC9sp/logout}" class="btn btn-outline-danger btn-sm" data-testid="button-logout">
+                    <i class="bi bi-box-arrow-right"></i> Sair
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard-card text-center">
+            <div class="display-5 text-warning mb-3">
+                <i class="bi bi-speedometer2"></i>
+            </div>
+            <h1 class="h3 mb-2">Painel Administrativo Autenticado</h1>
+            <p class="text-secondary mb-4">
+                Você acessou com sucesso a área restrita do sistema administrativo.
+            </p>
+            <div class="alert alert-dark border-secondary d-inline-block text-start p-3" th:if="${usuario != null}">
+                <div><strong>E-mail:</strong> <span th:text="${usuario.email}">admin@teste.com</span></div>
+                <div><strong>Perfil ID:</strong> <span th:text="${usuario.perfil != null ? usuario.perfil.id : 'N/A'}">1</span></div>
+                <div><strong>Status:</strong> <span class="badge bg-success">Ativo</span></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

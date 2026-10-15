@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://ultraq.net.nz" layout:decorate="~{site/layouts/main-layout}">
+
+<head>
+    <title>Cadastro - Barbearia GWJ</title>
+    <!-- Script de máscaras e script de validação customizado -->
+    <script th:src="@{/js/masks.js}" defer></script>
+    <script th:src="@{/js/validation.js}" defer></script>
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="cadastro-container">
+            <div class="cadastro-card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <h2 class="logo-title" style="font-weight: bold; color: var(--text-main); margin-bottom: 0.25rem; font-size: 1.8rem;">Tgo's <span>Barbearia</span></h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">Crie a sua conta de cliente</p>
+                </div>
+
+                <!-- Exibe o alerta de erro se houver algum problema -->
+                <div th:if="${erro != null}" class="custom-alert-danger" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 0.8rem; border-radius: 6px; text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    <span th:text="${erro}">Erro ao cadastrar.</span>
+                </div>
+
+                <!-- Alerta de senhas diferentes no frontend -->
+                <div id="passwordAlert" class="custom-alert-danger d-none" style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 0.8rem; border-radius: 6px; text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    As senhas informadas não coincidem.
+                </div>
+
+                <!-- Formulário de Cadastro -->
+                <form id="cadastroForm" th:action="@{/cadastro}" method="post" class="flex-col gap-1-5 needs-validation" novalidate>
+
+                    <div class="custom-form-row">
+                        <!-- Campo Nome -->
+                        <div class="custom-form-group" style="flex: 1; min-width: 200px;">
+                            <label for="nome" class="custom-label">Nome</label>
+                            <input type="text" class="custom-input" id="nome" name="nome" th:value="${nome}"
+                                placeholder="João" required>
+                        </div>
+
+                        <!-- Campo Sobrenome -->
+                        <div class="custom-form-group" style="flex: 1; min-width: 200px;">
+                            <label for="sobrenome" class="custom-label">Sobrenome</label>
+                            <input type="text" class="custom-input" id="sobrenome" name="sobrenome"
+                                th:value="${sobrenome}" placeholder="Silva" required>
+                        </div>
+                    </div>
+
+                    <!-- Campo E-mail -->
+                    <div class="custom-form-group">
+                        <label for="email" class="custom-label">E-mail</label>
+                        <input type="email" class="custom-input" id="email" name="email" th:value="${email}"
+                            placeholder="seu@email.com" required>
+                    </div>
+
+                    <!-- Campo Telefone -->
+                    <div class="custom-form-group">
+                        <label for="telefone" class="custom-label">Telefone / WhatsApp</label>
+                        <input type="tel" class="custom-input" id="telefone" name="telefone" th:value="${telefone}"
+                            placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <!-- Campo Senha -->
+                    <div class="custom-form-group">
+                        <label for="senha" class="custom-label">Senha</label>
+                        <input type="password" class="custom-input" id="senha" name="senha"
+                            placeholder="Crie uma senha forte" required>
+                    </div>
+
+                    <!-- Campo Confirmar Senha -->
+                    <div class="custom-form-group">
+                        <label for="confirmarSenha" class="custom-label">Confirmar Senha</label>
+                        <input type="password" class="custom-input" id="confirmarSenha"
+                            placeholder="Repita a senha criada" required>
+                    </div>
+
+                    <!-- Botão de Enviar -->
+                    <div style="margin-top: 0.5rem;">
+                        <button type="submit" class="btn btn-theme" style="width: 100%; border: none; cursor: pointer; padding: 1rem; font-size: 1.05rem;">Criar Conta</button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 0.5rem; font-size: 0.95rem;">
+                        <span style="color: var(--text-muted);">Já tem uma conta?</span>
+                        <a th:href="@{/login}" style="font-weight: bold; text-decoration: none; color: var(--text-main); border-bottom: 2px solid var(--primary-color);">Fazer Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
